@@ -1,0 +1,35 @@
+#include<bits/stdc++.h>
+// # edu dp contest 1 atcoder question 1 A FROG 1
+using namespace std;
+void dp(int pos,vector<int> &cost,vector<int>&height)
+    {
+        if(pos == 0 || pos == 1)
+        {
+            cost[0] = 0;
+            cost[1] = abs(height[1]-height[0]);
+            return;
+        }
+        else
+        {
+            cost[pos] = min(abs(height[pos]-height[pos-1])+cost[pos-1],abs(height[pos] - height[pos-2]) + cost[pos-2]);
+            return ;
+
+        }
+ 
+    }
+int main()
+    {
+int n;
+vector<int> height,cost;
+cin>>n;
+height.resize(n),cost.resize(n);
+for(int i=0;i<n;i++)
+{
+    cin>>height[i];
+}
+for(int pos =0;pos<n;pos++)
+{
+    dp(pos,cost,height);
+}
+cout<<cost[n-1]<<endl;
+    }
