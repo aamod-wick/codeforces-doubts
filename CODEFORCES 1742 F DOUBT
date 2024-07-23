@@ -1,0 +1,112 @@
+#include "bits/stdc++.h"
+using namespace std;
+ //CHECK WHY THERE IS OVERFLOW 
+#define ll long long
+ 
+#define       forn(i,n)              for(int i=0;i<n;i++)
+#define          all(v)              v.begin(), v.end()
+#define         rall(v)              v.rbegin(),v.rend()
+ 
+#define            pb                push_back
+#define          sz(a)               (int)a.size()
+
+void solve() {
+    int q; cin >> q;
+    bool otherA = false, otherB = false;
+    ll cntA = 0, cntB = 0;
+    while(q--) {
+        ll d, k; string x; cin >> d >> k >> x;
+        for(auto c: x) {
+            if(d == 1) {
+                if(c != 'a') otherA = 1;
+                else cntA += k;
+            } else {
+                if(c != 'a') otherB = 1;
+                else cntB += k;
+            } 
+        }
+        if(otherB) {
+            cout << "YES\n";
+        } else if(!otherA && cntA < cntB) {
+            cout << "YES\n";
+        } else {
+            cout << "NO\n";
+        }
+    }
+}   
+ 
+int32_t main() {
+    ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+    int t = 1;
+    cin >> t;
+    while(t--) {
+        solve();
+    }
+}
+/*#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    #ifndef ONLINE_JUDGE
+    freopen("input.txt", "r", stdin);
+    freopen("output.txt", "w", stdout);
+    #endif
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    
+    long long t = 0;
+    cin >> t;
+    
+    while (t--) {
+      int q =0,n=0;
+      cin>>q;
+      map<char,long long> s,t;
+      s['a']++,t['a']++;
+      string ins;
+      int d=0,k=0;
+      int count1 =1,count2 =1;
+      while(q--)
+      {
+        
+        cin>>d>>k;
+        cin>>ins;
+        string r;
+        
+        for(int i=0;i<ins.size();i++)
+        {
+          if(d==1){
+          s[ins[i]]+=k; //OVERFLOW HERE 
+          count1+=k;
+          }
+          else
+          {
+          t[ins[i]]+=k; //OVERFLOW HERE 
+          count2+=k;
+          }  
+        }     
+        auto it1 = s.begin();
+        auto it2 = t.end();
+        it2--;
+        if(it1->first<it2->first)
+        {
+          cout<<"YES"<<endl;
+        }
+        else if(it1->first>it2->first)
+        {
+          cout<<"NO"<<endl;
+        }
+        else
+        {
+          if((it1->second == count1 && count1<count2))
+          {
+            cout<<"YES"<<endl;
+          }
+          else
+          cout<<"NO"<<endl;
+        }
+      }
+    }
+
+    return 0;
+}
+*/
